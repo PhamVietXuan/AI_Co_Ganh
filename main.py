@@ -175,7 +175,8 @@ while True:
         print(step)
 
         start, end = step[0], step[1]
-        cg.simple_move(board, start, end)
+
+        is_valid_move = cg.simple_move(board, start, end)
 
         saveBoard(board, 'output.txt')
 
@@ -191,7 +192,14 @@ while True:
         tmp = [int(x) for x in pos]
 
         start, end = (tmp[0], tmp[1]), (tmp[2], tmp[3])
-        cg.simple_move(board, start, end)
+        is_valid_move = cg.simple_move(board, start, end)
+        # Lặp lại đến khi nhập đúng thì thôi
+        while not is_valid_move:
+            pos = input('POSITION: ')
+            tmp = [int(x) for x in pos]
+
+            start, end = (tmp[0], tmp[1]), (tmp[2], tmp[3])
+            is_valid_move = cg.simple_move(board, start, end)
 
         saveBoard(board, 'input.txt')
 

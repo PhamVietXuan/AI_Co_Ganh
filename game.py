@@ -550,13 +550,14 @@ class CoGanh:
 
         if not valid:
             print("Invalid move!!!")
-            return
-
+            return False
+            
         board[x1][y1] = board[x0][y0]
         board[x0][y0] = 0
 
         self.ganh(board, end)
         self.chan(board, -1 * board[x1][y1])
+        return True 
 
     def back_prop(self, board1, board2, player):
         start, end = None, None
