@@ -19,7 +19,7 @@ class Node_2:
         self.parent = parent
         self.child = []
         self.win_simu = 0
-        self.nums_simu = 0  
+        self.nums_simu = 0
 
     # functions used for MCTS
     def ratio(self):
@@ -30,11 +30,12 @@ class Node_2:
 
 class CoGanh:
     def __init__(self):
-        
+
         # 2: Initial value, processing
         # 1: can move
         # 0: can't move
-        self.moveBoard = []# Mảng 2 chiều thể hiện việc quân cờ ở vị trí X,Y có thể di chuyển qua ô khác không?
+        # Mảng 2 chiều thể hiện việc quân cờ ở vị trí X,Y có thể di chuyển qua ô khác không?
+        self.moveBoard = []
 
     def get_position(self, board, player):
         result = []
@@ -71,7 +72,7 @@ class CoGanh:
                 self.moveBoard[x][y] = 1
                 return False
 
-        #Check xem có thể di chuyển theo đường chéo không?
+        # Check xem có thể di chuyển theo đường chéo không?
 
         if (x + y) % 2 == 0:
             if x > 0 and y > 0:
@@ -112,16 +113,20 @@ class CoGanh:
         if (x + y) % 2 == 0:
             if x > 0 and y > 0:
                 if board[x - 1][y - 1] == player:
-                    result = result and self.can_not_move(board, (x - 1, y - 1))
+                    result = result and self.can_not_move(
+                        board, (x - 1, y - 1))
             if x < 4 and y > 0:
                 if board[x + 1][y - 1] == player:
-                    result = result and self.can_not_move(board, (x + 1, y - 1))
+                    result = result and self.can_not_move(
+                        board, (x + 1, y - 1))
             if x > 0 and y < 4:
                 if board[x - 1][y + 1] == player:
-                    result = result and self.can_not_move(board, (x - 1, y + 1))
+                    result = result and self.can_not_move(
+                        board, (x - 1, y + 1))
             if x < 4 and y < 4:
                 if board[x + 1][y + 1] == player:
-                    result = result and self.can_not_move(board, (x + 1, y + 1))
+                    result = result and self.can_not_move(
+                        board, (x + 1, y + 1))
 
         if result:
             later = False
@@ -525,6 +530,7 @@ class CoGanh:
         # Check if it's a valid move
         valid = False
         if (
+            board[x1][y1] == 0 and
             x1 >= 0 and x1 < 5 and
             y1 >= 0 and y1 < 5 and
             (
